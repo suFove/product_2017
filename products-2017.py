@@ -13,15 +13,9 @@
 # limitations under the License.
 """The WDC Product Data Corpus and Gold Standard for Large-Scale Product Matching - Version 2.0."""
 
-
-import csv
 import json
-import os
 
 import datasets
-
-from pdb import set_trace
-
 
 _CITATION = """\
 @inproceedings{primpeli2019wdc,
@@ -45,16 +39,6 @@ _HOMEPAGE = "http://webdatacommons.org/largescaleproductcorpus/v2/index.html"
 
 _LICENSE = ""
 
-# TODO: Add link to the official dataset URLs here
-# The HuggingFace Datasets library doesn't host the datasets but only points to the original files.
-# This can be an arbitrary nested dict/list of URLs (see below in `_split_generators` method)
-_URLS = {
-    "computers": "https://huggingface.co/datasets/wdc/products-2017/computers/",
-    "cameras": "https://huggingface.co/datasets/wdc/products-2017/cameras/",
-    "watches": "https://huggingface.co/datasets/wdc/products-2017/watches/",
-    "shoes": "https://huggingface.co/datasets/wdc/products-2017/shoes/"
-}
-
 _BASE_DATA_PAT_FORMAT_STR = "{category}/"
 
 class Products2017Config(datasets.BuilderConfig):
@@ -68,9 +52,7 @@ class Products2017Config(datasets.BuilderConfig):
 
         size = name.split('_')[1]
         # Initialize the base class.
-        description = (
-            f"Dataset for category {name}"
-        )
+
         super(Products2017Config, self).__init__(
             name=name, **kwargs
         )
@@ -88,17 +70,8 @@ class Products2017(datasets.GeneratorBasedBuilder):
 
     VERSION = datasets.Version("2.1.0")
 
-    # This is an example of a dataset with multiple configurations.
-    # If you don't want/need to define several sub-sets in your dataset,
-    # just remove the BUILDER_CONFIG_CLASS and the BUILDER_CONFIGS attributes.
+    BUILDER_CONFIG_CLASS = Products2017Config
 
-    # If you need to make complex sub-parts in the datasets with configurable options
-    # You can create your own builder configuration class to store attribute, inheriting from datasets.BuilderConfig
-    # BUILDER_CONFIG_CLASS = MyBuilderConfig
-
-    # You will be able to load one or the other configurations in the following list with
-    # data = datasets.load_dataset('my_dataset', 'first_domain')
-    # data = datasets.load_dataset('my_dataset', 'second_domain')
     BUILDER_CONFIGS = [
         Products2017Config(
             name='computers_xlarge',
