@@ -58,7 +58,6 @@ class Products2017Config(datasets.BuilderConfig):
         )
 
         # Additional attributes
-        self.name = name
         self.category = category
         self.size = size
         self.base_data_path = _BASE_DATA_PAT_FORMAT_STR.format(
@@ -190,7 +189,7 @@ class Products2017(datasets.GeneratorBasedBuilder):
             features=features,  # Here we define them above because they are different between the two configurations
             # If there's a common (input, target) tuple from the features, uncomment supervised_keys line below and
             # specify them. They'll be used if as_supervised=True in builder.as_dataset.
-            # supervised_keys=("sentence", "label"),
+            supervised_keys=None,
             # Homepage of the dataset for documentation
             homepage=_HOMEPAGE,
             # License for the dataset if available
