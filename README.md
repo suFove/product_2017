@@ -2,9 +2,9 @@
 annotations_creators:
 - weak supervision
 - expert-generated
-languages:
+language:
 - '''en-US'''
-licenses:
+license:
 - unknown
 multilinguality:
 - monolingual
