@@ -3,7 +3,9 @@ annotations_creators:
 - weak supervision
 - expert-generated
 language:
-- '''en-US'''
+- en
+language_bcp47:
+- en-US
 license:
 - unknown
 multilinguality:
